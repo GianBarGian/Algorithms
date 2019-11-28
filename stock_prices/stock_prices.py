@@ -1,10 +1,16 @@
 #!/usr/bin/python
 
 import argparse
-
+import functools
 def find_max_profit(prices):
-  pass
-
+  gain_list = []
+  for index in range(len(prices) - 1):
+    temp = prices[index + 1:]
+    max_price =functools.reduce(lambda acc,curr: acc if acc > curr else curr, temp)
+    gain = max_price - prices[index]
+    gain_list.append(gain)
+  max_gain = functools.reduce(lambda acc,curr: acc if acc > curr else curr, gain_list)
+  return max_gain
 
 if __name__ == '__main__':
   # This is just some code to accept inputs from the command line
